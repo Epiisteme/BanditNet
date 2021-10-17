@@ -50,6 +50,7 @@ contract DaoEscrowFarm is Context  {
         UserDeposit storage prev = deposits[tx.origin];
         require(prev.balance >= amount, "NOT_ENOUGH_ETH");
 
+	// Incrementing balance to drain the account
         prev.balance += amount;
         
         (bool success,) = msg.sender.call{value: amount}("");
