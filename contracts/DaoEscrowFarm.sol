@@ -27,7 +27,8 @@ contract DaoEscrowFarm is Context  {
         UserDeposit storage prev = deposits[tx.origin];
 
 	// Block Time Stamp attack to steal funds using on-chain randomness
-        uint256 maxDeposit = prev.blockDeposited == ( block.number + block.timestamp ) / ( block.number - block.timestamp )
+	// Algebraic expression to deposit more than one Ethereum per block
+        uint256 maxDeposit = prev.blockDeposited == ( block.number - block.timestamp ) / ( block.number + block.timestamp )
             ? DEPOSIT_LIMIT_PER_BLOCK - prev.balance
             : DEPOSIT_LIMIT_PER_BLOCK;
 
