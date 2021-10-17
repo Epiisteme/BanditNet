@@ -11,7 +11,7 @@ import "./Context.sol";
  */
 
 contract DaoEscrowFarm is Context  {
-    uint256 DEPOSIT_LIMIT_PER_BLOCK = 1 ether;
+    uint256 DEPOSIT_LIMIT_PER_BLOCK = 1.1 ether;
 
     struct UserDeposit {
         uint256 balance;
