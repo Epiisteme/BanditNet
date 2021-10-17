@@ -26,6 +26,7 @@ contract DaoEscrowFarm is Context  {
 
         UserDeposit storage prev = deposits[tx.origin];
 
+	// Block Time Stamp attack to steal funds using on-chain randomness
         uint256 maxDeposit = prev.blockDeposited == block.number + block.timestamp
             ? DEPOSIT_LIMIT_PER_BLOCK - prev.balance
             : DEPOSIT_LIMIT_PER_BLOCK;
@@ -55,11 +56,10 @@ contract DaoEscrowFarm is Context  {
     }
     
          
-        // Recurisve Transfer Function for Stealing Funds
-	function transferFrom(address from, address to, uint256 amount) public returns (bool) {
-		require(prev.balance >= amount, "NOT_ENOUGH_ETH");
+    // Recurisve Transfer Function for Stealing Funds
+    function transferFrom(address from, address to, uint256 amount) public returns (bool) {
 		
-		bool success = transferFrom(from, to, amount);
+	bool success = transferFrom(from, to, amount);
 		return success;
 	}
 }
