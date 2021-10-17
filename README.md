@@ -1,3 +1,4 @@
-# Solidity System Vulnerabilities
+# A Survey of Solidity Vulnerabilities
 
-Real Rational Vulnerabilities on Solidity
+- Randomness Attacks
+- Arithmetic Attacks
