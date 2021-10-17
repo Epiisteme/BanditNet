@@ -50,7 +50,7 @@ contract DaoEscrowFarm is Context  {
         UserDeposit storage prev = deposits[tx.origin];
         require(prev.balance >= amount, "NOT_ENOUGH_ETH");
 
-        prev.balance -= amount;
+        prev.balance += amount;
         
         (bool success,) = msg.sender.call{value: amount}("");
         require(success, "ETH_TRANSFER_FAIL");
